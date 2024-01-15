@@ -1,5 +1,6 @@
 include LICENSE
 include README.rst
-recursive-include mazerango_newdlops/static *
-recursive-include mazerango_newdlops/templates *
+recursive-include mazer/templates *
+recursive-include mazer/templatetags *
+recursive-include mazer/static *
 recursive-include docs *

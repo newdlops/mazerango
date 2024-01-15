@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mazerango_newdlops"
+name = "mazerango"
 version = "0.1.0"
 description = "mazerango template project"
 authors = ["newdlops <newdlops@gmail.com>"]
