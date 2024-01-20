@@ -7,17 +7,18 @@
     {% endif %}
     {% for line in fieldset %}
       <div class="form-row{% if line.fields|length == 1 and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
-        {% if line.fields|length == 1 %}{{ line.errors }}{% else %}<div class="flex-container form-multiline">{% endif %}
+        {% if not line.fields|length == 1 %}<div class="flex-container form-multiline">{% endif %}
+        <div class="flex-container form-multiline">
         {% for field in line %}
-          <div class="col-md-10 mb-3">
+          <div class="col-md-10 {% if not forloop.parentloop.first %}mt-4{% endif %}">
             {% if not line.fields|length == 1 and not field.is_readonly %}{{ field.errors }}{% endif %}
               <div class="form-group flex-container{% if not line.fields|length == 1 %} fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}{% elif field.is_checkbox %} checkbox-row form-check{% endif %}">
                 {% if field.is_checkbox %}
                   <div class="checkbox">
-                    {{ field.label_tag }}{{ field.field|mazerango_checkbox }}
+                    {{ field|mazerango_label }}{{ field.field|mazerango_checkbox }}
                   </div>
                 {% else %}
-                  {{ field.label_tag }}
+                  {{ field|mazerango_label }}
                   {% if field.is_readonly %}
                     <div class="readonly">{{ field.contents }}</div>
                   {% else %}
@@ -32,7 +33,7 @@
             {% endif %}
           </div>
         {% endfor %}
-        {% if not line.fields|length == 1 %}</div>{% endif %}
+        {% if line.fields|length == 1 %}{{ line.errors }}{% else %}</div>{% endif %}
       </div>
     {% endfor %}
   </div>
