@@ -12,7 +12,7 @@
         {% for field in line %}
           <div class="col-md-10 {% if not forloop.parentloop.first %}mt-4{% endif %}">
             {% if not line.fields|length == 1 and not field.is_readonly %}{{ field.errors }}{% endif %}
-              <div class="form-group flex-container{% if not line.fields|length == 1 %} fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}{% elif field.is_checkbox %} checkbox-row form-check{% endif %}">
+              <div class="form-group {% if field.field.field.required %}mandatory{% endif %} flex-container{% if not line.fields|length == 1 %} fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}{% elif field.is_checkbox %} checkbox-row form-check{% endif %}">
                 {% if field.is_checkbox %}
                   <div class="checkbox">
                     {{ field|mazerango_label }}{{ field.field|mazerango_checkbox }}

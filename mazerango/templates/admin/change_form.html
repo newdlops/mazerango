@@ -44,7 +44,7 @@
     {% endblock %}
   </div>
   <div id="content-main">
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}{% if form_url %}action="{{ form_url }}" {% endif %}method="post" id="{{ opts.model_name }}_form" {% comment %}data-parsley-validate{% endcomment %} novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}{% if form_url %}action="{{ form_url }}" {% endif %}method="post" id="{{ opts.model_name }}_form" data-parsley-validate novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
       <div class="card">
         <div class="card-body">
           {% if is_popup %}

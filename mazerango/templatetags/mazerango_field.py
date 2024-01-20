@@ -6,18 +6,17 @@ register = template.Library()
 def mazerango_class(field, css_class):
     attr = field.field.widget.attrs
     is_required = field.field.required
-
     widget = field.field.widget
     if hasattr(widget, 'input_type') and widget.input_type == 'select':
         field.field.widget.template_name = 'mazerango/widgets/select.html'
         return field
     if 'class' in attr:
         attr_dict = {"class": f"{css_class} {attr['class']}"}
-        # attr_dict.update({
-        #     "data-parsley-required": "true" if is_required else "false"
-        # })
+        attr_dict.update({
+            "data-parsley-required": "true" if is_required else "false"
+        })
         return field.as_widget(attrs=attr_dict)
-    return field.as_widget(attrs={"class": css_class})
+    return field.as_widget(attrs={"class": f"{css_class}"})
 
 
 @register.filter
