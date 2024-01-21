@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n mazerango_field %}
 {% if result_hidden_fields %}
   <div class="hiddenfields">{# DIV for HTML validation #}
   {% for item in result_hidden_fields %}{{ item }}{% endfor %}
@@ -46,8 +46,8 @@
 {% endif %}
 {% endcomment %}
 
-<div class="table-responsive">
-<table class="table" id="table1">
+
+<table class="table dataTable" id="result_list">
   <thead>
   <tr>
     {% for header in result_headers %}
@@ -87,4 +87,3 @@
     {% endfor %}
   </tbody>
 </table>
-</div>

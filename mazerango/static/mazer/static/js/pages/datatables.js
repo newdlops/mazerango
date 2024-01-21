@@ -1,4 +1,7 @@
-let jquery_datatable = $("#table1").DataTable({
+// let jquery_datatable = $("#table1").DataTable({
+//     responsive: true
+// })
+let jquery_datatable = $("#result_list").DataTable({
     responsive: true
 })
 let customized_datatable = $("#table2").DataTable({

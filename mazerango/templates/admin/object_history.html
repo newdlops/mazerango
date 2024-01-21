@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls %}
+{% load i18n static admin_urls %}
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
@@ -16,24 +16,42 @@
 <div id="change-history" class="module">
 
 {% if action_list %}
-    <table>
-        <thead>
-        <tr>
-            <th scope="col">{% translate 'Date/time' %}</th>
-            <th scope="col">{% translate 'User' %}</th>
-            <th scope="col">{% translate 'Action' %}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for action in action_list %}
-        <tr>
-            <th scope="row">{{ action.action_time|date:"DATETIME_FORMAT" }}</th>
-            <td>{{ action.user.get_username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
-            <td>{{ action.get_change_message }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container py-4">
+      {% for action in action_list %}
+      <div class="row">
+        <div class="col-auto text-center flex-column d-none d-sm-flex">
+          <div class="row h-50">
+            <div class="col{% if not forloop.first %} border-end{% endif %}">&nbsp;</div>
+            <div class="col">&nbsp;</div>
+          </div>
+          <h5 class="m-2">
+            <span class="badge rounded-pill bg-light border">&nbsp;</span>
+          </h5>
+          <div class="row h-50">
+            <div class="col{% if not forloop.last %} border-end{% endif %}">&nbsp;</div>
+            <div class="col">&nbsp;</div>
+          </div>
+        </div>
+        <div class="col py-2">
+          <div class="card border-success shadow">
+            <div class="card-body">
+              <div class="float-end text-muted">{{ action.action_time|date:"DATETIME_FORMAT" }}</div>
+              <div class="user-img float-left d-flex align-content-center">
+                <div class="avatar avatar-md">
+                  <img class="ml-4" src="{% static 'mazer/compiled/jpg/1.jpg' %}">
+                </div>
+                <h4 class="card-title ms-2">{{ action.user.get_username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}
+                </h4>
+              </div>
+
+
+              <p>S{{ action.get_change_message }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
     <p class="paginator">
       {% if pagination_required %}
         {% for i in page_range %}
