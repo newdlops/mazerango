@@ -130,15 +130,15 @@
                     <li>
                       <h6 class="dropdown-header">Hello, {% firstof user.get_short_name user.get_username %}</h6>
                     </li>
-                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
+                    <li><a class="dropdown-item" href="#"><i class="icon-mid fa fa-user-cog me-2"></i> My
                       Profile</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
-                      Settings</a></li>
+                    <li><a class="dropdown-item" href="password_change/"><i class="icon-mid fa fa-user-lock me-2"></i>
+                      {% trans 'Change password' %}</a></li>
                       <hr class="dropdown-divider">
                     </li>
                     <li>
-                      <a class="dropdown-item hover" href="#" onClick="submitForm();">
-                        <i class="icon-mid bi bi-box-arrow-left me-2"></i>
+                      <a class="dropdown-item" href="#" onClick="submitForm();">
+                        <i class="icon-mid fa fa-sign-out-alt me-2"></i>
                         {% translate 'Log out' %}</a>
                       <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
                       {% csrf_token %}
