@@ -1,4 +1,4 @@
-{% load i18n static %}<!DOCTYPE html>
+{% load i18n static mazerango_side_menu %}<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
 <head>
@@ -43,7 +43,7 @@
 <div id="app">
     <div id="sidebar">
         <div class="sidebar-wrapper active">
-            {% include "admin/side_menu.html" %}
+          {% mazerango_side_menu %}
         </div>
     </div>
 {#  {% if not is_popup %}#}
