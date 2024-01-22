@@ -1,4 +1,4 @@
-{% load i18n static mazerango_side_menu %}<!DOCTYPE html>
+{% load i18n static %}<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
 <head>
@@ -38,13 +38,11 @@
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
   data-admin-utc-offset="{% now "Z" %}">
 <script src="{% static "mazer/static/js/initTheme.js" %}"></script>
+{% block login_page %}{% endblock %}
 <!-- Container -->
+{% block main_content %}
 <div id="app">
-    <div id="sidebar">
-        <div class="sidebar-wrapper active">
-          {% mazerango_side_menu %}
-        </div>
-    </div>
+    {% block side_menu %}{% endblock %}
 {#  {% if not is_popup %}#}
     <!-- Header -->
 
@@ -249,6 +247,7 @@
       </div>
     </div>
 </div>
+{% endblock %}
 <!-- END Container -->
 
 <!-- SVGs -->

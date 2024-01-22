@@ -26,3 +26,19 @@ def mazerango_checkbox(field):
 @register.filter
 def mazerango_label(field):
     return field.field.label_tag(attrs={"class": "form-label"})
+
+@register.filter
+def login_password(value):
+    value.field.widget.attrs.update({
+        'class': 'form-control form-control-xl',
+        'placeholder': 'Password'
+    })
+    return value
+
+@register.filter
+def login_username(value):
+    value.field.widget.attrs.update({
+        'class': 'form-control form-control-xl',
+        'placeholder': 'Username'
+    })
+    return value

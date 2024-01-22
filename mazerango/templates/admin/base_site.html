@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-
+{% load mazerango_side_menu %}
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
@@ -7,6 +7,14 @@
 {% if user.is_anonymous %}
   {% include "admin/color_theme_toggle.html" %}
 {% endif %}
+{% endblock %}
+
+{% block side_menu %}
+  <div id="sidebar">
+    <div class="sidebar-wrapper active">
+      {% mazerango_side_menu %}
+    </div>
+  </div>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
