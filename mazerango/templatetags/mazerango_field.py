@@ -28,6 +28,10 @@ def mazerango_label(field):
     return field.field.label_tag(attrs={"class": "form-label"})
 
 @register.filter
+def mazerango_field_label(field):
+    return field.label_tag(attrs={"class": "form-label"})
+
+@register.filter
 def login_password(value):
     value.field.widget.attrs.update({
         'class': 'form-control form-control-xl',
