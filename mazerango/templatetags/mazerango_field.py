@@ -46,3 +46,7 @@ def login_username(value):
         'placeholder': 'Username'
     })
     return value
+
+@register.filter
+def inspect(value):
+    return value

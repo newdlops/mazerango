@@ -247,7 +247,8 @@ def items_for_result(cl, result, form):
         row_class = mark_safe(' class="%s"' % " ".join(row_classes))
         # If list_display_links not defined, add the link tag to the first field
         if link_in_col(first, field_name, cl):
-            table_tag = "th" if first else "td"
+            # table_tag = "th" if first else "td"
+            table_tag = "td"
             first = False
 
             # Display link to the result's change_view if the url exists, else
@@ -268,7 +269,7 @@ def items_for_result(cl, result, form):
                     attr = pk
                 value = result.serializable_value(attr)
                 link_or_text = format_html(
-                    '<a href="{}"{}>{}</a>',
+                    '<a href="{}"{}><span class="font-bold">{}</span></a>',
                     url,
                     format_html(' data-popup-opener="{}"', value)
                     if cl.is_popup
