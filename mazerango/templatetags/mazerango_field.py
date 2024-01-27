@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter
 def mazerango_class(field, css_class):
     attr = field.field.widget.attrs
@@ -23,13 +24,16 @@ def mazerango_class(field, css_class):
 def mazerango_checkbox(field):
     return field.as_widget(attrs={"class": "form-check-input"})
 
+
 @register.filter
 def mazerango_label(field):
     return field.field.label_tag(attrs={"class": "form-label"})
 
+
 @register.filter
 def mazerango_field_label(field):
     return field.label_tag(attrs={"class": "form-label"})
+
 
 @register.filter
 def login_password(value):
@@ -39,6 +43,7 @@ def login_password(value):
     })
     return value
 
+
 @register.filter
 def login_username(value):
     value.field.widget.attrs.update({
@@ -46,6 +51,7 @@ def login_username(value):
         'placeholder': 'Username'
     })
     return value
+
 
 @register.filter
 def inspect(value):
