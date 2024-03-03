@@ -1,4 +1,6 @@
 from django import template
+from django.core import serializers
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -51,6 +53,14 @@ def login_username(value):
         'placeholder': 'Username'
     })
     return value
+
+
+@register.filter
+def json_string(value):
+    import json
+    from django.utils.encoding import smart_str
+    python_data = serializers.serialize('json', value, ensure_ascii=False)
+    return str(mark_safe(python_data))
 
 
 @register.filter
