@@ -2,10 +2,11 @@ from django.contrib import admin
 from functools import update_wrapper
 from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.urls import path, re_path
 
 csrf_protect_m = method_decorator(csrf_protect)
+
 
 class ModelAdmin(admin.ModelAdmin):
     # Admin에 추가할 URL과 뷰 함수 매핑
@@ -16,6 +17,7 @@ class ModelAdmin(admin.ModelAdmin):
 
             wrapper.model_admin = self
             return update_wrapper(wrapper, view)
+
         info = self.opts.app_label, self.opts.model_name
         urls = super().get_urls()
         my_urls = [
@@ -41,5 +43,4 @@ class ModelAdmin(admin.ModelAdmin):
         context = super().changelist_view(request).context_data
         results = context['cl'].result_list
         json_results = list(results.values(*self.list_display))
-
-        return JsonResponse({'recordsTotal': context['cl'].result_count,'recordsFiltered': context['cl'].result_count, 'data': json.dumps(json_results)})
+        return HttpResponse(json.dumps({'recordsTotal': context['cl'].result_count,'recordsFiltered': context['cl'].result_count, 'data': json_results}))

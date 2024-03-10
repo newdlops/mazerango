@@ -4,8 +4,8 @@
     <facet type="django" name="Django">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$/venv/lib/python3.11/site-packages/pip/_internal/utils" />
-        <option name="settingsModule" value="" />
-        <option name="manageScript" value="" />
+        <option name="settingsModule" value="$MODULE_DIR$/mazerango/settings.py" />
+        <option name="manageScript" value="$MODULE_DIR$/manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
         <option name="doNotUseTestRunner" value="false" />
         <option name="trackFilePattern" value="migrations" />
