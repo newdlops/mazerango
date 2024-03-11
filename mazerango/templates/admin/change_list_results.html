@@ -47,18 +47,18 @@
     <thead>
     <tr>
       {% for header in result_headers %}
-        <th>{{ header.text|capfirst }}</th>
+        <th {% if forloop.first %}class="action-checkbox-column" data-dt-order="disable"{% endif %}>{{ header.text|capfirst }}</th>
       {% endfor %}
     </tr>
     </thead>
     <tbody>
     {% for result in results %}
       {% if result.form and result.form.non_field_errors %}
-        <tr>
+        <tr {% if forloop.first %}class="action-checkbox"{% endif %}>
           <td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td>
         </tr>
       {% endif %}
-      <tr>{% for item in result %}{{ item }}{% endfor %}</tr>
+      <tr {% if forloop.first %}class="action-checkbox"{% endif %}>{% for item in result %}{{ item }}{% endfor %}</tr>
     {% endfor %}
     </tbody>
   </table>
@@ -94,7 +94,8 @@
                               render: (data, type, row) => {
                                   return `<input type="checkbox" name="_selected_action" value="${row.id}" class="action-select" aria-label="Select this object for an action - ${row.user_id}">`
                               },
-                              targets: 0
+                              className: 'action-checkbox',
+                              targets: [0]
                           },
                       {% else %}
                           {
@@ -112,23 +113,24 @@
                       {% endif %}
                   {% endfor %}
               ],
+              order: [[1, '']],
               columns: [
                   {% for field in cl.list_display %}
                       {% if forloop.first %}
-                          {data: null},
+                          {data: null, orderable: false},
                       {% else %}
                           {data: '{{ field }}'},
                       {% endif %}
                   {% endfor %}
               ],
               language: {
-                  search:         "검색 : ",
-                  lengthMenu:    "한 페이지 _MENU_ 개씩 보기",
+                  search: "검색 : ",
+                  lengthMenu: "한 페이지 _MENU_ 개씩 보기",
                   paginate: {
-                      first:      "첫페이지",
-                      previous:   "앞",
-                      next:       "뒤",
-                      last:       "마지막페이지"
+                      first: "첫페이지",
+                      previous: "앞",
+                      next: "뒤",
+                      last: "마지막페이지"
                   },
               }
           });
