@@ -44,6 +44,7 @@
     }
 
     function checker(actionCheckboxes, options, checked) {
+        console.log('체커', actionCheckboxes, options);
         if (checked) {
             showQuestion(options);
         } else {
